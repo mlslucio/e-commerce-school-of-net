@@ -39,12 +39,12 @@
 
         <div class="form-group">
         <label for="featured">Featured</label>
-        <input class="form-inline" type="checkbox" value="1" name="featured" id="featured"/>
+        <input class="form-inline" type="checkbox" name="featured" id="featured"/>
         </div>
 
         <div class="form-group">
         <label for="featured">Recommend</label>
-        <input class="form-inline" type="checkbox" value="1" name="recommend" id="recommend"/>
+        <input class="form-inline" type="checkbox" name="recommend" id="recommend"/>
         </div>
 
         <button class="btn-success">Add</button>

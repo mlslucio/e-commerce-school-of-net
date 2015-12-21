@@ -38,22 +38,22 @@
     </div>
 
     <div class="form-group">
-        @if($product->descritpion == 1)
+        @if($product->featured == 1)
             <label for="featured">Featured</label>
-            <input class="form-inline" type="checkbox" value="true" checked name="featured" id="featured"/>
+            <input class="form-inline" type="checkbox" checked name="featured" id="featured"/>
         @else
             <label for="featured">Featured</label>
-            <input class="form-inline" type="checkbox" value="true" name="featured" id="featured"/>
+            <input class="form-inline" type="checkbox" name="featured" id="featured"/>
         @endif
     </div>
 
     <div class="form-group">
         @if($product->recommend == 1)
             <label for="featured">Recommend</label>
-            <input class="form-inline" type="checkbox"  value="true" checked value="1" name="recommend" id="recommend"/>
+            <input class="form-inline" type="checkbox" checked name="recommend" id="recommend"/>
         @else
             <label for="featured">Recommend</label>
-            <input class="form-inline" type="checkbox" value="true" name="recommend" id="recommend"/>
+            <input class="form-inline" type="checkbox" name="recommend" id="recommend"/>
 
         @endif
     </div>
