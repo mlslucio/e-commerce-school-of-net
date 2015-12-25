@@ -18,7 +18,7 @@ class CategoryTableSeeder extends Seeder
         //factory('CodeCommerce\Category',1)->create(['name' => 'mauro',
            // 'description' => 'teste']);
 
-        factory('CodeCommerce\Category',10)->create();
+        factory('CodeCommerce\Category',40)->create();
        /* $faker = Faker::create();
         DB::table('categories')->truncate();
         foreach (range(1, 15) as $i) {

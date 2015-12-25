@@ -20,7 +20,7 @@
         </ul>
     @endif
 
-    {!! Form::open(['url'=>'products']) !!}
+    {!! Form::open(['route'=>'products.storage']) !!}
         <div class="form-group">
         <label for="name">Name</label>
         <input class="form-control" type="text" name="name" id="name"/>
@@ -42,10 +42,13 @@
         <input class="form-inline" type="checkbox" name="featured" id="featured"/>
         </div>
 
+
         <div class="form-group">
         <label for="featured">Recommend</label>
         <input class="form-inline" type="checkbox" name="recommend" id="recommend"/>
         </div>
+
+        {!! Form::select('category_id', $categories, null, ['class'=>'form-control']) !!}
 
         <button class="btn-success">Add</button>
 

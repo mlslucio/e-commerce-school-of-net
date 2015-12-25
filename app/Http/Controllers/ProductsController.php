@@ -2,6 +2,7 @@
 
 namespace CodeCommerce\Http\Controllers;
 
+use CodeCommerce\Category;
 use CodeCommerce\Product;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,7 @@ class ProductsController extends Controller
 
     public function index()
     {
-        $product = $this->productModel->all();
+        $product = $this->productModel->paginate(10);
         return view('products.index', compact('product'));
     }
 
@@ -32,9 +33,10 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Category $category)
     {
-        return view('products.create');
+        $categories = $category->lists('name','id');
+        return view('products.create', compact('categories'));
     }
 
     /**
@@ -45,11 +47,12 @@ class ProductsController extends Controller
      */
     public function store(Requests\ProductRequest $request)
     {
+        //dd("entrou aqui");
 
         $this->productModel->fill($request->all());
         $this->productModel->save();
 
-        return redirect('products');
+        return redirect()->route('product');
     }
 
     /**
@@ -69,10 +72,11 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Category $category)
     {
+        $categories = $category->lists('name','id');
         $product = $this->productModel->find($id);
-        return view('products.edit', compact('product'));
+        return view('products.edit', compact('product','categories'));
     }
 
     /**
@@ -84,10 +88,9 @@ class ProductsController extends Controller
      */
     public function update( $id, Requests\ProductRequest $request)
     {
-        //dd($request->all());
-
         $this->productModel->find($id)->update($request->all());
-        return redirect('products');
+
+        return redirect()->route('product');
     }
 
     /**
@@ -99,6 +102,6 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         $this->productModel->findOrNew($id)->delete();
-        return redirect('products');
+        return redirect()->route('product');
     }
 }

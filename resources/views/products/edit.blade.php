@@ -58,6 +58,8 @@
         @endif
     </div>
 
+    {!! Form::select('category_id', $categories, $product->category->id, ['class'=>'form-control']) !!}
+
     <button class="btn-success">Save</button>
 
     {!! Form::close() !!}
