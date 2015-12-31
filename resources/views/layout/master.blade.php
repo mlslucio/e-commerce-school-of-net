@@ -9,8 +9,24 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
+                <h4> CodeCommerce</h4>
 
             </div>
+
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="{{route('product')}}">Proucts</a>
+
+                </li>
+                <li>
+                    <a href="{{route('category')}}">Categories</a>
+                </li>
+                <li>
+                    <a href="#">Sair</a>
+                </li>
+
+            </ul>
+
         </div>
     </nav>
 

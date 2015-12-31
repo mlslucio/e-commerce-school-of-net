@@ -15,26 +15,23 @@
 
     <br>
 
+    <a href="{{ route('products.images.create',['id'=>$product->id]) }}" class="btn btn-default"> New image </a>
+    <a href="{{route('product')}}" class="btn btn-default"> voltar </a>
      <table class="table">
          <th>id</th>
          <th>image</th>
          <th>extension</th>
-         <th colspan="4">action</th>
-
 
          @foreach($product->images as $image)
 
              <tr>
                  <td>{{$image->id}}</td>
-                 <td> <img style="width:10%;" src="{{url('uploads/'.$image->id.'.'.$image->extension)}}"> </td>
+                 <td> <img style="width:10%; height: 40px;" src="{{url('uploads/'.$image->id.'.'.$image->extension)}}"> </td>
                  <td>{{$image->extension}}</td>
-
-                <td><a href="{{route('products.images.create',['id'=>$product->id])}}"> New image </a>"</td>
-                 <td> <a href="{{route('products.edit',['id'=>$image->product->id])}}">edit</a> </td>
                  <td> <a href="{{route('products.images.destroy',['id'=>$image->id])}}">Delete</a> </td>
              </tr>
 
          @endforeach
      </table>
-    <a href="{{route('product')}}"> voltar </a>
+
  @endsection
