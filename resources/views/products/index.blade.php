@@ -35,8 +35,9 @@
                  <td>{{$prod->recommend}}</td>
                  <td>{{$prod->category->name}}</td>
 
-                 <td> <a href="{{route('products.edit',['id'=>$prod->id])}} }}">edit</a> </td>
-                 <td> <a href="{{route('products.destroy',['id'=>$prod->id])}} }}">Delete</a> </td>
+                 <td> <a href="{{route('products.images',['id'=>$prod->id])}}">Images</a> </td>
+                 <td> <a href="{{route('products.edit',['id'=>$prod->id])}}">edit</a> </td>
+                 <td> <a href="{{route('products.destroy',['id'=>$prod->id])}}">Delete</a> </td>
 
              </tr>
          @endforeach

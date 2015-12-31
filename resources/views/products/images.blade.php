@@ -8,38 +8,33 @@
 @endsection
  @section('content')
 
-    <h1> Products </h1>
+
+
+
+    <h1> images of {{$product->name}} </h1>
 
     <br>
-    <a href="{{route('products.create')}}"> New Product </a>"
+
      <table class="table">
          <th>id</th>
-         <th>name</th>
-         <th>description</th>
-         <th>price</th>
-         <th>fetuared</th>
-         <th>recommend</th>
-         <th>category</th>
-
-
+         <th>image</th>
+         <th>extension</th>
          <th colspan="4">action</th>
 
-         @foreach($product as $prod)
+
+         @foreach($product->images as $image)
 
              <tr>
-                 <td>{{$prod->id}}</td>
-                 <td>{{$prod->name}}</td>
-                 <td>{{$prod->description}}</td>
-                 <td>{{$prod->price}}</td>
-                 <td>{{$prod->featured}}</td>
-                 <td>{{$prod->recommend}}</td>
-                 <td>{{$prod->category->name}}</td>
+                 <td>{{$image->id}}</td>
+                 <td> <img style="width:10%;" src="{{url('uploads/'.$image->id.'.'.$image->extension)}}"> </td>
+                 <td>{{$image->extension}}</td>
 
-                 <td> <a href="{{route('products.edit',['id'=>$prod->id])}}">edit</a> </td>
-                 <td> <a href="{{route('products.destroy',['id'=>$prod->id])}}">Delete</a> </td>
-
+                <td><a href="{{route('products.images.create',['id'=>$product->id])}}"> New image </a>"</td>
+                 <td> <a href="{{route('products.edit',['id'=>$image->product->id])}}">edit</a> </td>
+                 <td> <a href="{{route('products.images.destroy',['id'=>$image->id])}}">Delete</a> </td>
              </tr>
+
          @endforeach
      </table>
-    {!!$product->render()!!}
+    <a href="{{route('product')}}"> voltar </a>
  @endsection

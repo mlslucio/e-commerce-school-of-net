@@ -14,7 +14,7 @@ class AddCategoryProudcts extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
 
-            $table->integer('category_id')->nullable();
+            $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->
             onDelete('cascade');
         });
