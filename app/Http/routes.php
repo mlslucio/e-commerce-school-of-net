@@ -15,6 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('teste', function(){
+
+    return "teste";
+});
+
+    Route::get('teste/{num}', ['where' => ['num'=>'[0-9]+'], function(){
+
+            return "numero";
+    }]);
+
     Route::group(['prefix'=>'admin', 'where'=>['id'=>'[0-9]+']], function() {
 
         Route::group(['prefix' => 'categories'], function () {
@@ -38,8 +48,18 @@ Route::get('/', function () {
             Route::get('edit/{id}', ['as' => 'products.edit', 'uses' => 'ProductsController@edit']);
             Route::put('update/{id}', ['as' => 'products.update', 'uses' => 'ProductsController@update']);
 
+            Route::group(['prefix'=>'images'], function(){
+
+                Route::get('/{id}/product',['as'=>'products.images', 'uses'=>'ProductsController@images']);
+                Route::get('create/{id}',['as'=>'products.images.create', 'uses'=>'ProductsController@createImage']);
+                Route::post('upload/{id}',['as'=>'products.images.store', 'uses'=>'ProductsController@storeImage']);
+                Route::get('destroy/{id}',['as'=>'products.images.destroy', 'uses'=>'ProductsController@destroyImage']);
+
+            });
+
         });
     });
+
 
 //Route::get('category/{category}' , function(\CodeCommerce\Category $category){
 
