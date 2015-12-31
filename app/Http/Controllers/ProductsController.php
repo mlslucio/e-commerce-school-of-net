@@ -139,7 +139,10 @@ class ProductsController extends Controller
 
         public function destroyImage($id,ProductImage $productImage){
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2476d45c1628f831c1f66cfc8ff3f159227d481c
         $image = $productImage->find($id);
 
             if(file_exists(public_path() . '/uploads/' .$image->id.'.'.$image->extension)){
@@ -152,7 +155,12 @@ class ProductsController extends Controller
                 return redirect()->route('products.images', ['id' => $product->id]);
 
             }else{
+<<<<<<< HEAD
                 $image->delete();
+=======
+
+                echo "essa imagem não existe";
+>>>>>>> 2476d45c1628f831c1f66cfc8ff3f159227d481c
             }
 
 
