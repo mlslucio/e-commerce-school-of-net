@@ -5,6 +5,7 @@ namespace CodeCommerce\Http\Controllers;
 use CodeCommerce\Category;
 use CodeCommerce\Product;
 use CodeCommerce\ProductImage;
+use CodeCommerce\Tag;
 use Illuminate\Http\Request;
 use CodeCommerce\Http\Requests;
 use CodeCommerce\Http\Controllers\Controller;
@@ -49,14 +50,28 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\ProductRequest $request)
+    public function store(Requests\ProductRequest $request, Tag $tag)
     {
-        //dd("entrou aqui");
+
+        $tags = $request->input('tag');
+        $tags = explode(",", $tags);
+        $arrTags = array();
+
+        foreach ($tags as $t) {
+
+           $tagAtual =  Tag::firstOrCreate(array('name'=>$t));
+
+            array_push($arrTags, $tagAtual->id);
+
+        }
+
 
         $this->productModel->fill($request->all());
         $this->productModel->save();
 
-        return redirect()->route('product');
+        $this->productModel->tags()->sync($arrTags);
+
+        //return redirect()->route('product');
     }
 
     /**
@@ -80,7 +95,9 @@ class ProductsController extends Controller
     {
         $categories = $category->lists('name','id');
         $product = $this->productModel->find($id);
-        return view('products.edit', compact('product','categories'));
+        $tags = $product->tags;
+        $tags = $product->tags->lists('name');
+        return view('products.edit', compact('product','categories','tags'));
     }
 
     /**
@@ -92,7 +109,23 @@ class ProductsController extends Controller
      */
     public function update( $id, Requests\ProductRequest $request)
     {
-        $this->productModel->find($id)->update($request->all());
+        $tags = $request->input('tag');
+        $tags = explode(",", $tags);
+        $arrTags = array();
+
+        foreach ($tags as $t) {
+
+            $tagAtual =  Tag::firstOrCreate(array('name'=>$t));
+
+            array_push($arrTags, $tagAtual->id);
+
+        }
+
+
+        $product = $this->productModel->find($id);
+
+        $product->tags()->sync($arrTags);
+        $product->update($request->all());
 
         return redirect()->route('product');
     }

@@ -50,6 +50,11 @@
 
         {!! Form::select('category_id', $categories, null, ['class'=>'form-control']) !!}
 
+        <div class="form-group">
+            <label for="tag">tags</label>
+            <textarea class="form-control" type="checkbox" name="tag" id="tag"></textarea>
+        </div>
+
         <button class="btn-success">Add</button>
 
      {!! Form::close() !!}

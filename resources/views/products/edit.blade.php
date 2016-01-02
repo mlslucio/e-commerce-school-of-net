@@ -60,6 +60,20 @@
 
     {!! Form::select('category_id', $categories, $product->category->id, ['class'=>'form-control']) !!}
 
+    <div class="form-group">
+        <label for="tag">tags</label>
+        <textarea class="form-control" type="checkbox" name="tag" id="tag">
+
+
+            @foreach ($tags as $tag)
+
+                {{$tag}};
+
+            @endforeach
+
+        </textarea>
+    </div>
+
     <button class="btn-success">Save</button>
 
     {!! Form::close() !!}
