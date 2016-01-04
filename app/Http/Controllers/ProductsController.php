@@ -62,6 +62,7 @@ class ProductsController extends Controller
            $tagAtual =  Tag::firstOrCreate(array('name'=>$t));
 
             array_push($arrTags, $tagAtual->id);
+            return redirect()->route('product');
 
         }
 

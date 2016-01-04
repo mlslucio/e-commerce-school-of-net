@@ -12,7 +12,7 @@ class ProductTags extends Migration
      */
     public function up()
     {
-        Schema::create('product_tags', function (Blueprint $table) {
+        Schema::create('product_tag', function (Blueprint $table) {
 
             $table->increments('id');
             $table->integer('product_id')->unsigned()->default(0);
