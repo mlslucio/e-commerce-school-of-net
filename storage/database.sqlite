@@ -1,0 +1,33 @@
+ O volume na unidade C n∆o tem nome.
+ O N£mero de SÇrie do Volume Ç F40F-5FC8
+
+ Pasta de C:\wamp\www\e-commerce
+
+01/01/2016  10:51    <DIR>          .
+01/01/2016  10:51    <DIR>          ..
+13/12/2015  09:49               307 .env
+12/12/2015  23:48               307 .env.example
+12/12/2015  23:48                61 .gitattributes
+12/12/2015  23:48                57 .gitignore
+31/12/2015  11:33    <DIR>          .idea
+04/01/2016  19:10    <DIR>          app
+12/12/2015  23:48             1.646 artisan
+12/12/2015  23:48    <DIR>          bootstrap
+18/12/2015  22:07             1.245 composer.json
+18/12/2015  22:08           112.660 composer.lock
+04/01/2016  19:19    <DIR>          config
+04/01/2016  19:12    <DIR>          database
+12/12/2015  23:48               503 gulpfile.js
+12/12/2015  23:48               159 package.json
+16/12/2015  19:59               105 phpspec.yml
+12/12/2015  23:48               899 phpunit.xml
+03/01/2016  11:59    <DIR>          public
+12/12/2015  23:48             1.928 readme.md
+01/01/2016  10:51                35 reset
+12/12/2015  23:48    <DIR>          resources
+12/12/2015  23:48               567 server.php
+30/12/2015  20:17    <DIR>          storage
+12/12/2015  23:48    <DIR>          tests
+18/12/2015  22:08    <DIR>          vendor
+              14 arquivo(s)        120.479 bytes
+              12 pasta(s)   973.539.217.408 bytes dispon°veis
