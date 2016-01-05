@@ -42,7 +42,7 @@ Route::get('teste', function(){
 
             Route::get('/', ['as' => 'product', 'uses' => 'ProductsController@index']);
             Route::get('create', ['as' => 'products.create', 'uses' => 'ProductsController@create']);
-            Route::post('/', ['as' => 'products.storage', 'uses' => 'ProductsController@store']);
+            Route::post('products', ['as' => 'products.storage', 'uses' => 'ProductsController@store']);
             Route::get('destroy/{id}', ['as' => 'products.destroy', 'uses' => 'ProductsController@destroy']);
             Route::get('edit/{id}', ['as' => 'products.edit', 'uses' => 'ProductsController@edit']);
             Route::put('update/{id}', ['as' => 'products.update', 'uses' => 'ProductsController@update']);

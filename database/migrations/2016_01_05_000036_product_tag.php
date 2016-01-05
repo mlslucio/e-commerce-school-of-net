@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ProductTags extends Migration
+class ProductTag extends Migration
 {
     /**
      * Run the migrations.
@@ -30,6 +30,6 @@ class ProductTags extends Migration
      */
     public function down()
     {
-        Schema::drop('product_tags');
+        Schema::drop('product_tag');
     }
 }

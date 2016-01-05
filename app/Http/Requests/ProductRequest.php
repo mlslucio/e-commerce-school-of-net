@@ -27,6 +27,7 @@ class ProductRequest extends Request
             'price'=>'required',
             'name'=>'required',
             'description'=>'required',
+            'tag'=>'required'
         ];
     }
 }

@@ -62,16 +62,9 @@
 
     <div class="form-group">
         <label for="tag">tags</label>
-        <textarea class="form-control" type="checkbox" name="tag" id="tag">
+        <textarea class="form-control" rows="6" cols="4" name="tag" id="tag">{!! $tagFormatada !!}</textarea>
 
 
-            @foreach ($tags as $tag)
-
-                {{$tag}};
-
-            @endforeach
-
-        </textarea>
     </div>
 
     <button class="btn-success">Save</button>

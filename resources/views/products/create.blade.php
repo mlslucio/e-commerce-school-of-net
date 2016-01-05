@@ -39,23 +39,22 @@
 
         <div class="form-group">
         <label for="featured">Featured</label>
-        <input class="form-inline" type="checkbox" name="featured" id="featured"/>
-        </div>
+            {!! Form::checkbox ('featured', null, ['class'=>'form-control']) !!}
 
 
         <div class="form-group">
         <label for="featured">Recommend</label>
-        <input class="form-inline" type="checkbox" name="recommend" id="recommend"/>
+            {!! Form::checkbox ('recommend', null, ['class'=>'form-control']) !!}
         </div>
 
         {!! Form::select('category_id', $categories, null, ['class'=>'form-control']) !!}
 
         <div class="form-group">
             <label for="tag">tags</label>
-            <textarea class="form-control" type="checkbox" name="tag" id="tag"></textarea>
+            <textarea class="form-control" rows="5" cols="5" type="checkbox" name="tag" id="tag"></textarea>
         </div>
 
-        <button class="btn-success">Add</button>
+        <button  type="submit" class="btn-success">Add</button>
 
      {!! Form::close() !!}
 

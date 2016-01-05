@@ -19,8 +19,8 @@ class CreateProductsTable extends Migration
             $table->string("name",80);
             $table->text("description");
             $table->decimal("price");
-            $table->boolean("featured");
-            $table->boolean("recommend");
+            $table->tinyInteger("featured");
+            $table->tinyInteger("recommend");
         });
     }
 

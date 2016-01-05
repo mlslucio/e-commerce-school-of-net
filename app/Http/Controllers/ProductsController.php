@@ -1,7 +1,5 @@
 <?php
-
 namespace CodeCommerce\Http\Controllers;
-
 use CodeCommerce\Category;
 use CodeCommerce\Product;
 use CodeCommerce\ProductImage;
@@ -13,7 +11,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 class ProductsController extends Controller
 {
     /**
@@ -26,13 +23,11 @@ class ProductsController extends Controller
     {
         $this->productModel = $product;
     }
-
     public function index()
     {
         $product = $this->productModel->paginate(10);
         return view('products.index', compact('product'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -43,7 +38,6 @@ class ProductsController extends Controller
         $categories = $category->lists('name','id');
         return view('products.create', compact('categories'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -52,29 +46,24 @@ class ProductsController extends Controller
      */
     public function store(Requests\ProductRequest $request, Tag $tag)
     {
+        $tags = trim($request->input('tag'));
 
-        $tags = $request->input('tag');
         $tags = explode(",", $tags);
         $arrTags = array();
-
         foreach ($tags as $t) {
 
-           $tagAtual =  Tag::firstOrCreate(array('name'=>$t));
+            $tagAtual = Tag::firstOrCreate(array('name' => trim($t)));
+             array_push($arrTags, $tagAtual->id);
 
-            array_push($arrTags, $tagAtual->id);
-            return redirect()->route('product');
-
-        }
+            }
 
 
-        $this->productModel->fill($request->all());
+        $input = $request->all();
+        $this->productModel->fill($input);
         $this->productModel->save();
-
         $this->productModel->tags()->sync($arrTags);
-
-        //return redirect()->route('product');
+        return redirect()->route('product');
     }
-
     /**
      * Display the specified resource.
      *
@@ -85,7 +74,6 @@ class ProductsController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -98,9 +86,17 @@ class ProductsController extends Controller
         $product = $this->productModel->find($id);
         $tags = $product->tags;
         $tags = $product->tags->lists('name');
-        return view('products.edit', compact('product','categories','tags'));
-    }
+        $tagFormatada = "";
 
+        foreach($tags as $t){
+
+            $tagFormatada .= $t.",";
+        }
+
+        $tagFormatada = trim($tagFormatada);
+
+        return view('products.edit', compact('product','categories','tagFormatada'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -110,27 +106,26 @@ class ProductsController extends Controller
      */
     public function update( $id, Requests\ProductRequest $request)
     {
-        $tags = $request->input('tag');
+        $tags = trim($request->input('tag'));
         $tags = explode(",", $tags);
         $arrTags = array();
-
         foreach ($tags as $t) {
+            echo $t;
+            if(empty($t)){
 
-            $tagAtual =  Tag::firstOrCreate(array('name'=>$t));
+                echo "vazio";
 
-            array_push($arrTags, $tagAtual->id);
+            }else {
 
+                $tagAtual = Tag::firstOrCreate(array('name' => $t));
+                array_push($arrTags, $tagAtual->id);
+            }
         }
-
-
         $product = $this->productModel->find($id);
-
         $product->tags()->sync($arrTags);
         $product->update($request->all());
-
         return redirect()->route('product');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -142,58 +137,36 @@ class ProductsController extends Controller
         $this->productModel->find($id)->delete();
         return redirect()->route('product');
     }
-
     public function images($id){
-
-       $product = $this->productModel->find($id);
+        $product = $this->productModel->find($id);
         return view('products.images', compact('product'));
     }
-
     public function createImage($id){
         $product = $this->productModel->find($id);
         return view('products.create_image', compact('product'));
     }
-
     public function storeImage($id, Requests\ProductImageRequest $request, ProductImage $productImage ){
-
-            $file = $request->file('photo');
-
-
-       // if(input::file('photo')->isValid()){
-
-            $extension = Input::file('photo')->getClientOriginalExtension();
-            $image = $productImage::create(['product_id' => $id, 'extension' => $extension]);
-
-            Storage::disk('public_local')->put($image->id . '.' . $extension, File::get($file));
-
-            return redirect()->route('products.images', ['id' => $id]);
-       // }else{
-         //   echo "algo está errado";
+        $file = $request->file('photo');
+        // if(input::file('photo')->isValid()){
+        $extension = Input::file('photo')->getClientOriginalExtension();
+        $image = $productImage::create(['product_id' => $id, 'extension' => $extension]);
+        Storage::disk('public_local')->put($image->id . '.' . $extension, File::get($file));
+        return redirect()->route('products.images', ['id' => $id]);
+        // }else{
+        //   echo "algo está errado";
 //        /}
     }
-
-        public function destroyImage($id,ProductImage $productImage){
-
+    public function destroyImage($id,ProductImage $productImage){
         $image = $productImage->find($id);
-
-            if(file_exists(public_path() . '/uploads/' .$image->id.'.'.$image->extension)){
-
-                Storage::disk('public_local')->delete($image->id.'.'.$image->extension);
-
-                $product = $image->product;
-                $image->delete();
-
-                return redirect()->route('products.images', ['id' => $product->id]);
-
-            }else{
-
-                $product = $image->product;
-                $image->delete();
-                return redirect()->route('products.images', ['id' => $product->id]);
-
-
-             }
-
-
+        if(file_exists(public_path() . '/uploads/' .$image->id.'.'.$image->extension)){
+            Storage::disk('public_local')->delete($image->id.'.'.$image->extension);
+            $product = $image->product;
+            $image->delete();
+            return redirect()->route('products.images', ['id' => $product->id]);
+        }else{
+            $product = $image->product;
+            $image->delete();
+            return redirect()->route('products.images', ['id' => $product->id]);
+        }
     }
 }
