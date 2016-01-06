@@ -48,7 +48,10 @@ class ProductsController extends Controller
     {
         $tags = trim($request->input('tag'));
 
-        $tags = explode(",", $tags);
+        $tags = array_filter(explode(",", $tags));
+
+        $tags = array_filter($tags, 'trim');
+
         $arrTags = array();
         foreach ($tags as $t) {
 
@@ -57,11 +60,12 @@ class ProductsController extends Controller
 
             }
 
-
         $input = $request->all();
         $this->productModel->fill($input);
         $this->productModel->save();
-        $this->productModel->tags()->sync($arrTags);
+        $arrTrim = array_map('trim',$arrTags);
+
+        $this->productModel->tags()->sync($arrTrim);
         return redirect()->route('product');
     }
     /**
@@ -90,10 +94,11 @@ class ProductsController extends Controller
 
         foreach($tags as $t){
 
-            $tagFormatada .= $t.",";
+            $tagFormatada .= trim($t).",";
         }
 
         $tagFormatada = trim($tagFormatada);
+
 
         return view('products.edit', compact('product','categories','tagFormatada'));
     }
@@ -107,22 +112,26 @@ class ProductsController extends Controller
     public function update( $id, Requests\ProductRequest $request)
     {
         $tags = trim($request->input('tag'));
-        $tags = explode(",", $tags);
+
+        $tags = array_filter(explode(",", $tags));
+
+        $tags = array_filter($tags, 'trim');
+
         $arrTags = array();
         foreach ($tags as $t) {
             echo $t;
             if(empty($t)){
 
-                echo "vazio";
-
             }else {
 
-                $tagAtual = Tag::firstOrCreate(array('name' => $t));
+                $tagAtual = Tag::firstOrCreate(array('name' => trim($t)));
                 array_push($arrTags, $tagAtual->id);
             }
         }
         $product = $this->productModel->find($id);
-        $product->tags()->sync($arrTags);
+
+        $arrTrim = array_map('trim',$arrTags);
+        $product->tags()->sync($arrTrim);
         $product->update($request->all());
         return redirect()->route('product');
     }
