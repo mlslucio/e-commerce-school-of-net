@@ -38,25 +38,28 @@
     </div>
 
     <div class="form-group">
+        <label for="featured">Featured</label>
+        <input type="hidden" name="featured" value="0" class="form-control"/>
         @if($product->featured == 1)
-            <label for="featured">Featured</label>
-            <input class="form-inline" type="checkbox" checked name="featured" id="featured"/>
+            <input type="checkbox" name="featured" class="form-group"  checked />
         @else
-            <label for="featured">Featured</label>
-            <input class="form-inline" type="checkbox" name="featured" id="featured"/>
+            <input type="checkbox" name="featured" class="form-group" />
+
         @endif
+
     </div>
 
-    <div class="form-group">
+        <label for="recmmend">Recommend</label>
+        <input type="hidden" name="recommend" value="0" class="form-control" />
         @if($product->recommend == 1)
-            <label for="featured">Recommend</label>
-            <input class="form-inline" type="checkbox" checked name="recommend" id="recommend"/>
-        @else
-            <label for="featured">Recommend</label>
-            <input class="form-inline" type="checkbox" name="recommend" id="recommend"/>
+                <input type="checkbox" name="recommend" class="form-group"  checked />
 
-        @endif
-    </div>
+            @else
+
+                <input type="checkbox" class="form-group" name="recommend"  />
+
+            @endif
+
 
     {!! Form::select('category_id', $categories, $product->category->id, ['class'=>'form-control']) !!}
 

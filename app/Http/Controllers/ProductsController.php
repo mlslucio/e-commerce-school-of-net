@@ -44,8 +44,9 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\ProductRequest $request, Tag $tag)
+    public function store(Request $request, Tag $tag)
     {
+
         $tags = trim($request->input('tag'));
 
         $tags = array_filter(explode(",", $tags));
@@ -110,31 +111,44 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update( $id, Requests\ProductRequest $request)
-    {
-        $tags = trim($request->input('tag'));
+        {
+            $input = array_map('trim', $request->all());
+            
 
-        $tags = array_filter(explode(",", $tags));
+            if($input['recommend'] == "on") {
+                $input['recommend'] = 1;
 
-        $tags = array_filter($tags, 'trim');
+            }else{
+                $input['recommend'] = 0;
+            }
 
-        $arrTags = array();
-        foreach ($tags as $t) {
-            echo $t;
-            if(empty($t)){
+            if($input['featured']== "on") {
+                $input['featured'] = 1;
 
-            }else {
+            }else{
+                $input['featured'] = 0;
+            }
+
+            $tags = trim($request->input('tag'));
+
+            $tags = array_filter(explode(",", $tags));
+
+            $tags = array_filter($tags, 'trim');
+
+            $arrTags = array();
+            foreach ($tags as $t) {
 
                 $tagAtual = Tag::firstOrCreate(array('name' => trim($t)));
                 array_push($arrTags, $tagAtual->id);
-            }
-        }
-        $product = $this->productModel->find($id);
 
-        $arrTrim = array_map('trim',$arrTags);
-        $product->tags()->sync($arrTrim);
-        $product->update($request->all());
-        return redirect()->route('product');
-    }
+            }
+            $product = $this->productModel->find($id);
+
+            $arrTrim = array_map('trim',$arrTags);
+            $product->tags()->sync($arrTrim);
+            $product->update($input);
+            return redirect()->route('product');
+        }
     /**
      * Remove the specified resource from storage.
      *

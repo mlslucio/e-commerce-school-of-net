@@ -38,16 +38,22 @@
         </div>
 
         <div class="form-group">
-        <label for="featured">Featured</label>
-            {!! Form::checkbox ('featured', null, ['class'=>'form-control']) !!}
+            <label for="featured">Featured</label>
 
+            {!! Form::hidden ('featured',0,['class'=>'form-control']) !!}
+            {!! Form::checkbox ('featured',true,['class'=>'form-control']) !!}
+
+        </div>
 
         <div class="form-group">
-        <label for="featured">Recommend</label>
-            {!! Form::checkbox ('recommend', null, ['class'=>'form-control']) !!}
+            <label for="featured">Recommend</label>
+
+            {!! Form::hidden ('recommend',0,['class'=>'form-control']) !!}
+            {!! Form::checkbox ('recommend',true,['class'=>'form-control']) !!}
         </div>
 
         {!! Form::select('category_id', $categories, null, ['class'=>'form-control']) !!}
+
 
         <div class="form-group">
             <label for="tag">tags</label>
