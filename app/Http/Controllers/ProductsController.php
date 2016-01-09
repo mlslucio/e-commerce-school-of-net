@@ -44,7 +44,7 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Tag $tag)
+    public function store(Requests\ProductRequest $request, Tag $tag)
     {
 
         $tags = trim($request->input('tag'));
@@ -113,7 +113,7 @@ class ProductsController extends Controller
     public function update( $id, Requests\ProductRequest $request)
         {
             $input = array_map('trim', $request->all());
-            
+
 
             if($input['recommend'] == "on") {
                 $input['recommend'] = 1;

@@ -24,10 +24,9 @@ class ProductRequest extends Request
     public function rules()
     {
         return [
-            'price'=>'required',
+            'price'=>'required|numeric',
             'name'=>'required',
-            'description'=>'required',
-            'tag'=>'required'
+            'description'=>'required'
         ];
     }
 }

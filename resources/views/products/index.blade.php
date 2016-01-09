@@ -31,8 +31,19 @@
                  <td>{{$prod->name}}</td>
                  <td>{{$prod->description}}</td>
                  <td>{{$prod->price}}</td>
-                 <td>{{$prod->featured}}</td>
-                 <td>{{$prod->recommend}}</td>
+
+                 @if($prod->featured == 1)
+                    <td>{{'Yes'}}</td>
+                @else
+                     <td>{{'No'}}</td>
+                 @endif
+
+                 @if($prod->recommend == 1)
+                    <td>{{'Yes'}}</td>
+                 @else
+                     <td>{{'No'}}</td>
+                 @endif
+
                  <td>{{$prod->category->name}}</td>
 
                  <td> <a href="{{route('products.images',['id'=>$prod->id])}}">Images</a> </td>
