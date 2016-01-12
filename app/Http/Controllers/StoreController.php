@@ -12,6 +12,12 @@ use CodeCommerce\Http\Controllers\Controller;
 
 class StoreController extends Controller
 {
+    private $category;
+
+    public function __construct()
+    {
+
+    }
 
     public function index(){
 
@@ -23,6 +29,16 @@ class StoreController extends Controller
 
         return view('store.index', compact('categories', 'productFeatured','productRecommend'));
 
+    }
+
+    public function category($id){
+
+
+        $produtosPorCategoria = Category::find($id)->products;
+        $categories = Category::all();
+
+
+        return view('store.category', compact('produtosPorCategoria','categories'));
     }
 
 }

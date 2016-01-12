@@ -11,7 +11,15 @@
 |
 */
 
-Route::get('/', 'StoreController@index');
+
+    Route::group(array('prefix'=>'/'), function(){
+
+        Route::get('/', 'StoreController@index');
+        Route::get('category/{id}',array('as' => 'categoria.produtos', 'uses'=>'StoreController@category'));
+
+    });
+
+
 
 
 Route::get('teste', function(){
@@ -25,6 +33,7 @@ Route::get('teste', function(){
     }]);
 
     Route::group(['prefix'=>'admin', 'where'=>['id'=>'[0-9]+']], function() {
+
 
         Route::group(['prefix' => 'categories'], function () {
 

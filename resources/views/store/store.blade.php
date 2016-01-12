@@ -9,12 +9,12 @@
     <title>Home | E-Shop</title>
 
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/responsive.css" rel="stylesheet">
+    <link href="{{url()}}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url()}}/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{url()}}/css/prettyPhoto.css" rel="stylesheet">
+    <link href="{{url()}}/css/animate.css" rel="stylesheet">
+    <link href="{{url()}}/css/main.css" rel="stylesheet">
+    <link href="{{url()}}/css/responsive.css" rel="stylesheet">
 
 
 </head><!--/head-->
@@ -82,7 +82,7 @@
                     </div>
                     <div class="mainmenu pull-left">
                         <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="/" class="active">Home</a></li>
+                            <li><a href="{{url()}}" class="active">Home</a></li>
                             <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="shop.html">Products</a></li>
@@ -114,7 +114,7 @@
         <div class="row">
 
             @section('sidebar')
-                isso é uma side bar
+
             @show
 
             @yield('cat')
