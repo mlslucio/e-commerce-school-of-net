@@ -16,7 +16,8 @@
 
         Route::get('/', 'StoreController@index');
         Route::get('category/{id}',array('as' => 'categoria.produtos', 'uses'=>'StoreController@category'));
-
+        Route::get('product/{id}',array('as' => 'store.product', 'uses'=>'StoreController@product'));
+        Route::get('ProdutosPorTag/{id}',array('as' => 'store.tag', 'uses'=>'StoreController@produtosPorTag'));
     });
 
 
