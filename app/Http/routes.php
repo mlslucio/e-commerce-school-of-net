@@ -18,6 +18,11 @@
         Route::get('category/{id}',array('as' => 'categoria.produtos', 'uses'=>'StoreController@category'));
         Route::get('product/{id}',array('as' => 'store.product', 'uses'=>'StoreController@product'));
         Route::get('ProdutosPorTag/{id}',array('as' => 'store.tag', 'uses'=>'StoreController@produtosPorTag'));
+        Route::get('cart',array('as' => 'cart', 'uses'=>'CartController@index'));
+        Route::get('cart/add/{id}',array('as' => 'cart.add', 'uses'=>'CartController@add'));
+        Route::get('cart/destory/{id}',array('as' => 'cart.destroy', 'uses'=>'CartController@destroy'));
+        Route::post('alterarQtdItem',array('as' => 'cart.alterar.qtd', 'uses'=>'CartController@alterarQtdItem'));
+
     });
 
 
