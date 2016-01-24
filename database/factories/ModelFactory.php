@@ -12,6 +12,14 @@
 */
 
 $factory->define(CodeCommerce\User::class, function (Faker\Generator $faker) {
+
+    /*return [
+        'name' => 'mauro',
+        'email' => 'mauro',
+        'password' => bcrypt(123),
+        'remember_token' => '1',
+    ]; */
+
     return [
         'name' => $faker->name,
         'email' => $faker->email,

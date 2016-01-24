@@ -10,6 +10,7 @@
 
     <h1> Products </h1>
 
+
     <br>
     <a href="{{route('products.create')}}"> New Product </a>"
      <table class="table">

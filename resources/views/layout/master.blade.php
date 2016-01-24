@@ -22,7 +22,7 @@
                     <a href="{{route('category')}}">Categories</a>
                 </li>
                 <li>
-                    <a href="#">Sair</a>
+                    <a href="{{route('logout')}}">Sair</a>
                 </li>
 
             </ul>

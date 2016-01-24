@@ -22,6 +22,7 @@ class ProductsController extends Controller
     public function __construct(Product $product)
     {
         $this->productModel = $product;
+
     }
     public function index()
     {

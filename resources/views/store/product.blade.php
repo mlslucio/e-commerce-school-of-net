@@ -5,6 +5,7 @@
     @stop
 
 
+
         <div class="col-sm-10 padding-right">
             @section('content')
             <div style="background-color: white;" class="product-details"><!--product-details-->

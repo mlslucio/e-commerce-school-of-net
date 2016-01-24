@@ -12,33 +12,32 @@
 */
 
 
-    Route::group(array('prefix'=>'/'), function(){
+    Route::group(array('prefix'=>'/','middleware'=>'auth'), function() {
 
-        Route::get('/', 'StoreController@index');
-        Route::get('category/{id}',array('as' => 'categoria.produtos', 'uses'=>'StoreController@category'));
-        Route::get('product/{id}',array('as' => 'store.product', 'uses'=>'StoreController@product'));
-        Route::get('ProdutosPorTag/{id}',array('as' => 'store.tag', 'uses'=>'StoreController@produtosPorTag'));
-        Route::get('cart',array('as' => 'cart', 'uses'=>'CartController@index'));
-        Route::get('cart/add/{id}',array('as' => 'cart.add', 'uses'=>'CartController@add'));
-        Route::get('cart/destory/{id}',array('as' => 'cart.destroy', 'uses'=>'CartController@destroy'));
-        Route::post('alterarQtdItem',array('as' => 'cart.alterar.qtd', 'uses'=>'CartController@alterarQtdItem'));
+        Route::get('checkout/placeOrder', ['as' => 'store.checkout', 'uses' => 'CheckOutController@place']);
+        Route::get('auth/logout',['as'=>'logout','uses'=>'AuthController@logout']);
 
     });
 
+    Route::group(array('prefix'=>'/'), function(){
 
 
+        Route::get('ProdutosPorTag/{id}', array('as' => 'store.tag', 'uses' => 'StoreController@produtosPorTag'));
+        Route::get('cart', array('as' => 'cart', 'uses' => 'CartController@index'));
+        Route::get('cart/add/{id}', array('as' => 'cart.add', 'uses' => 'CartController@add'));
+        Route::get('cart/destory/{id}', array('as' => 'cart.destroy', 'uses' => 'CartController@destroy'));
+        Route::post('alterarQtdItem', array('as' => 'cart.alterar.qtd', 'uses' => 'CartController@alterarQtdItem'));
+        Route::get('category/{id}', array('as' => 'categoria.produtos', 'uses' => 'StoreController@category'));
+        Route::get('product/{id}', array('as' => 'store.product', 'uses' => 'StoreController@product'));
+        Route::get('/',['uses'=>'StoreController@index','as' => 'store']);
+        Route::get('auth/login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
+        Route::post('auth/login', ['as' => 'auth.login', 'uses' => 'AuthController@postLogin']);
+        Route::get('auth/register',['as'=>'auth.register' , 'uses'=> 'AuthController@getRegister']);
+        Route::post('auth/register',['as'=>'auth.register.save', 'uses'=> 'AuthController@postRegister']);
+    });
 
-Route::get('teste', function(){
 
-    return "teste";
-});
-
-    Route::get('teste/{num}', ['where' => ['num'=>'[0-9]+'], function(){
-
-            return "numero";
-    }]);
-
-    Route::group(['prefix'=>'admin', 'where'=>['id'=>'[0-9]+']], function() {
+    Route::group(['prefix'=>'admin','middleware'=>'adm', 'where'=>['id'=>'[0-9]+']], function() {
 
 
         Route::group(['prefix' => 'categories'], function () {
@@ -74,10 +73,17 @@ Route::get('teste', function(){
         });
     });
 
+        Route::get('category/{category}', 'AdminCategoriesController@bind');
+
+        /*Route::controllers([
+            'auth' => 'Auth\AuthController',
+            'password' => 'Auth\PasswordController',
+            'teste'=>'TesteController'
+        ]); */
+
 
 //Route::get('category/{category}' , function(\CodeCommerce\Category $category){
 
  //   return $category->name;
 //});
 
-Route::get('category/{category}', 'AdminCategoriesController@bind');

@@ -47,7 +47,7 @@
                                 </td>
 
                                 <td class="cart_quantity">
-                                    <input style="width:15%;" type="number" name="qtd_item" id="{{$k}}"  value="{{$items['qtd']}}">
+                                    <input style="width:15%;" type="number" min="0" name="qtd_item" id="{{$k}}"  value="{{$items['qtd']}}">
                                     <input type="hidden" id="valor{{$k}}"/>
 
                                 </td>
@@ -76,7 +76,7 @@
                                     <span>
                                         Total: R${{$cart->getTotal()}}
                                     </span>
-                                    <a href="#" class="btn btn-success">Fechar a compra</a>
+                                    <a href="{{route('store.checkout')}}" class="btn btn-success">Fechar a compra</a>
                                 </div>
                             </td>
 

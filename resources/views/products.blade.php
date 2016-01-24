@@ -1,5 +1,6 @@
 <h3> Products </h3>
 
+
 <ul>
     @foreach($data as $k)
         <li>{{$k->name}}</li>

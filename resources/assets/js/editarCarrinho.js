@@ -10,8 +10,9 @@ $(document).ready(function(){
         var id =$(this).attr('id');
         var qtd = $(this).val();
 
+
         $("#alerta").css('display','block');
-        $(this).prop('disabled',true);
+
 
             $.post('alterarQtdItem', {'qtd':qtd, 'id':id}, function(data) {
 
