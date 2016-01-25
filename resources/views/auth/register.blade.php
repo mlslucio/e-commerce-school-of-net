@@ -40,8 +40,8 @@
                     </div>
 
                     <div>
-                        Confirm Password
-                        <input class="form-control" type="password" name="password_confirmation">
+                       <!-- Confirm Password
+                        <input class="form-control" type="password" name="password_confirmation">-->
                     </div>
 
                     <div><br/>

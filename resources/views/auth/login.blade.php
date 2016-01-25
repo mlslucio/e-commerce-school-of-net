@@ -22,6 +22,10 @@
     <div class="container">
         <div class="row">
             <div style="top: 150px;" class="col-sm-5 col-sm-offset-3">
+
+                <div class="alert-info"> {{ Session::get('msgCadastro') }} </div>
+
+
                 <form method="POST" action="{{url('/auth/login')}}">
                     {!! csrf_field() !!}
                     <h2 class="form-signin-heading">Please sign in</h2>
@@ -36,6 +40,7 @@
                     </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                 </form>
+                <h3><a href="{{route('auth.register')}}">Registrar-se</a></h3>
             </div>
         </div>
     </div> <!-- /container -->
@@ -45,3 +50,15 @@
 
     </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
