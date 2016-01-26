@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdemItem extends Migration
+class OrderItems extends Migration
 {
     /**
      * Run the migrations.
@@ -21,6 +21,7 @@ class CreateOrdemItem extends Migration
             $table->decimal('price',8,2);
             $table->smallinteger('qtd');
             $table->timestamps();
+
         });
     }
 
@@ -31,6 +32,8 @@ class CreateOrdemItem extends Migration
      */
     public function down()
     {
-        Schema::drop('order_items');
+        Schema::table('order_items', function (Blueprint $table) {
+            //
+        });
     }
 }

@@ -35,6 +35,10 @@ class Cart
 
     }
 
+    public function clear(){
+        $this->items = [];
+    }
+
     public function editar($id, $name, $price,$qtd){
 
         echo $id;

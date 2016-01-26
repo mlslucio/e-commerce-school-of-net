@@ -17,6 +17,7 @@
         Route::get('checkout/placeOrder', ['as' => 'store.checkout', 'uses' => 'CheckOutController@place']);
         Route::get('auth/logout',['as'=>'logout','uses'=>'AuthController@logout']);
 
+
     });
 
     Route::group(array('prefix'=>'/'), function(){
@@ -34,6 +35,8 @@
         Route::post('auth/login', ['as' => 'auth.login', 'uses' => 'AuthController@postLogin']);
         Route::get('auth/register',['as'=>'auth.register' , 'uses'=> 'AuthController@getRegister']);
         Route::post('auth/register',['as'=>'auth.register.save', 'uses'=> 'AuthController@postRegister']);
+        Route::post('auth/recuperar_senha', ['as'=>'auth.recuperar.senha', 'uses'=>'AuthController@recuperarSenha']);
+        Route::get('auth/recuperar_senha', ['as'=>'auth.recuperar.senha', 'uses'=>'AuthController@recuperarSenha']);
     });
 
 

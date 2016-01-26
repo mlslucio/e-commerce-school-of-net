@@ -29,7 +29,6 @@ class AuthController extends Controller
 
 
          User::create([
-            'name' => Input::get('name'),
             'email' => Input::get('email'),
             'password' => bcrypt(Input::get('password')),
             'remeber_token'=> Input::get('_token')
@@ -62,6 +61,10 @@ class AuthController extends Controller
 
     }
 
+    public function recuperarSenha()
+    {
+        return view('auth.recuperar_senha');
+    }
 
     /* public function teste(){
 
