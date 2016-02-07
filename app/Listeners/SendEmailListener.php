@@ -27,13 +27,13 @@ class SendEmailListener
      */
     public function handle(CheckoutEvent $event)
     {
-        $order = $event->getOrder();
+        /*$order = $event->getOrder();
         $user = $event->getUser();
 
         $send = Mail::send('email.confirmacao_pedido', ['user' => $user, 'order'=>$order], function ($m) use ($user) {
 
             $m->to('mlsjpk@gmail.com', $user->name)->subject('Confirmação de pedido');
-        });
+        }); */
 
 
     }
