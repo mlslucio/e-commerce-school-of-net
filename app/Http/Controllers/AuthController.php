@@ -10,6 +10,7 @@ use CodeCommerce\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
+use CodeCommerce\Endereco;
 
 class AuthController extends Controller
 {
@@ -28,12 +29,24 @@ class AuthController extends Controller
     public function postRegister(){
 
 
-         User::create([
+        $user = User::create([
             'email' => Input::get('email'),
+             'name'=> Input::get('name'),
             'password' => bcrypt(Input::get('password')),
             'remeber_token'=> Input::get('_token')
         ]);
 
+        $endereco = new Endereco();
+
+
+            $endereco->estado = Input::get('uf');
+            $endereco->cidade = Input::get('cidade');
+            $endereco->bairro =Input::get('bairro');
+            $endereco->rua = Input::get('rua');
+            $endereco->numero = Input::get('numero');
+            $endereco->user_id = $user->id;
+
+            $endereco->save();
 
         $msg = "usuario criado com sucesso!";
 

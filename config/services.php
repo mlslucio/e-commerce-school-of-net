@@ -10,17 +10,17 @@ return [
     | This file is for storing the credentials for third party services such
     | as Stripe, Mailgun, Mandrill, and others. This file provides a sane
     | default location for this type of information, allowing packages
-    | to have a conventional place to find your various credentials.
+    | to have a conventional plasandbox0b820e48d3c74e4795a0db61f206e6de.mailgun.orgce to find your various credentials.
     |
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => 'postmaster@sandbox0b820e48d3c74e4795a0db61f206e6de.mailgun.org',
+        'secret' => 'key-6289e5aa7f106ee2893bb92faae3d8c1',
     ],
 
     'mandrill' => [
-        'secret' => env('MANDRILL_SECRET'),
+        'secret' => env('MAIL_PASSWORD'),
     ],
 
     'ses' => [

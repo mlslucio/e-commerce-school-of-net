@@ -31,6 +31,7 @@ elixir(function(mix) {
         'jquery.prettyPhoto.js',
         'main.js',
         'editarCarrinho.js',
+        'alterarStatusPedido.js'
 
     ],'public/js/all.js');
 

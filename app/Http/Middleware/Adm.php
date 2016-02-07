@@ -25,6 +25,8 @@ class Adm
 
     public function handle($request, Closure $next)
     {
+        if($this->auth->guest())
+            return redirect()->route('login');
 
         if($this->auth->user()->is_admin != 1) {
 

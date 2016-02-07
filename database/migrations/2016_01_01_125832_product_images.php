@@ -31,6 +31,7 @@ class ProductImages extends Migration
      */
     public function down()
     {
-        \Illuminate\Support\Facades\Schema::drop('product_images');
+        Schema::drop('product_images');
+
     }
 }

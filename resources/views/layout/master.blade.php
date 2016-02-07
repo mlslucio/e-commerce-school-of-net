@@ -1,6 +1,7 @@
 <html>
 <head>
     <title> CodeCommerce - @yield('title')</title>
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 </head>
 <body>
@@ -14,6 +15,12 @@
             </div>
 
             <ul class="nav navbar-nav navbar-left">
+
+                <li>
+                    <a href="{{route('adm.orders')}}">Orders</a>
+
+                </li>
+
                 <li>
                     <a href="{{route('product')}}">Proucts</a>
 
@@ -35,6 +42,10 @@
 <div class="container">
 
     @yield('content')
+
 </div>
+
+<script src="{{url()}}{{elixir("js/all.js")}}"></script>
+
 </body>
 </html>

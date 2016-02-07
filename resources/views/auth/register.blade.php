@@ -6,10 +6,9 @@
                 <form  method="POST" action="{{route('auth.register.save')}}">
                     {!! csrf_field() !!}
 
-                    <!--<div>
                         Name
                         <input class="form-control" type="text" name="name" value="{{ old('name') }}">
-                    </div>-->
+
 
                     <div>
                         Email
@@ -20,6 +19,32 @@
                         Password
                         <input class="form-control" type="password" name="password">
                     </div>
+
+                    <div>
+                        uf
+                        <input class="form-control" type="text" name="uf">
+                    </div>
+
+                    <div>
+                        Cidade
+                        <input class="form-control" type="text" name="cidade">
+                    </div>
+
+                    <div>
+                        Bairro
+                        <input class="form-control" type="text" name="bairro">
+                    </div>
+
+                    <div>
+                        Rua
+                        <input class="form-control" type="text" name="rua">
+                    </div>
+
+                    <div>
+                        Numero
+                        <input class="form-control" type="text" name="numero">
+                    </div>
+
 
                     <div>
                        <!-- Confirm Password

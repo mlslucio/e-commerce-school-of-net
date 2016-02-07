@@ -29,8 +29,6 @@ class Order extends Migration
      */
     public function down()
     {
-        Schema::table('order', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('orders');
     }
 }

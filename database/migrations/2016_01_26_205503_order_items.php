@@ -32,8 +32,7 @@ class OrderItems extends Migration
      */
     public function down()
     {
-        Schema::table('order_items', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('order_items');
+
     }
 }

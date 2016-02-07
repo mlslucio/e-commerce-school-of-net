@@ -12,10 +12,12 @@
 */
 
 
+
     Route::group(array('prefix'=>'/','middleware'=>'auth'), function() {
 
         Route::get('checkout/placeOrder', ['as' => 'store.checkout', 'uses' => 'CheckOutController@place']);
         Route::get('auth/logout',['as'=>'logout','uses'=>'AuthController@logout']);
+        Route::get('account/orders',['as' => 'account.orders','uses'=>'AccountController@orders']);
 
 
     });
@@ -42,6 +44,9 @@
 
     Route::group(['prefix'=>'admin','middleware'=>'adm', 'where'=>['id'=>'[0-9]+']], function() {
 
+
+        Route::get('orders', ['as'=>'adm.orders', 'uses'=>'AccountController@adminOrders']);
+        Route::post('alterarStatusPedido', ['as'=>'adm.alterar.status.pedido', 'uses'=>'AccountController@alterarStatusPedido']);
 
         Route::group(['prefix' => 'categories'], function () {
 
