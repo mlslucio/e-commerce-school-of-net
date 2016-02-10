@@ -30,10 +30,10 @@ class AuthController extends Controller
 
 
         $user = User::create([
+            'name'=> Input::get('name'),
             'email' => Input::get('email'),
-             'name'=> Input::get('name'),
             'password' => bcrypt(Input::get('password')),
-            'remeber_token'=> Input::get('_token')
+            'remember_token'=> Input::get('_token')
         ]);
 
         $endereco = new Endereco();

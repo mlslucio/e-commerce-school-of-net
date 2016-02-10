@@ -18,6 +18,7 @@
         Route::get('checkout/placeOrder', ['as' => 'store.checkout', 'uses' => 'CheckOutController@place']);
         Route::get('auth/logout',['as'=>'logout','uses'=>'AuthController@logout']);
         Route::get('account/orders',['as' => 'account.orders','uses'=>'AccountController@orders']);
+        Route::get('test',['as' => '','uses'=>'CheckoutController@test']);
 
 
     });
