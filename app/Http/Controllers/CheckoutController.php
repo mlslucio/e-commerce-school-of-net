@@ -49,9 +49,9 @@ class CheckoutController extends Controller
 
             event(new CheckoutEvent(Auth::user(), $order));
             $response = $checkoutService->checkout($checkout->getCheckout());
-            //return redirect($response->getRedirectionUrl());
+            return redirect($response->getRedirectionUrl());
 
-            return view('store.checkout', compact('order','cart','categories'));
+            //return view('store.checkout', compact('order','cart','categories'));
 
         } else {
             $order= [];
